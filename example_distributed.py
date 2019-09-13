@@ -21,6 +21,9 @@ if __name__ == '__main__':
                                          n_learner_actor_workers=N_WORKERS,
 
                                          nn_type="recurrent",
+                                         eval_agent_export_freq=5000,
+                                         checkpoint_freq=5000,
+
 
                                          game_cls=DiscretizedNLHoldem,
                                          agent_bet_set=bet_sets.B_5,
