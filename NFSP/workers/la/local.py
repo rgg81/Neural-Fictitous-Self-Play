@@ -185,7 +185,7 @@ class LearnerActor(WorkerBase):
 
                 assert state["p_id"] == p_id
 
-                self._avg_learner[p_id].load_state_dict(state["avg"])
+                self._avg_learner[p_id].load_state_dict(state["pi"])
                 self._br_learner[p_id].load_state_dict(state["br"])
                 self._br_bufs[p_id].load_state_dict(state["cir"])
                 self._avg_bufs[p_id].load_state_dict(state["res"])
