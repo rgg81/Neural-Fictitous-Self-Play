@@ -156,6 +156,7 @@ class LearnerActor(WorkerBase):
     # __________________________________________________________________________________________________________________
     def checkpoint(self, curr_step):
         for p_id in range(self._env_bldr.N_SEATS):
+            state = None
             state = {
                 "pi": self._avg_learner[p_id].state_dict(),
                 "br": self._br_learner[p_id].state_dict(),
@@ -173,6 +174,7 @@ class LearnerActor(WorkerBase):
                                                  cls=self.__class__, worker_id=str(self._id) + "_General"),
                   "wb") as pkl_file:
 
+            state = None
             state = {
                 "env": self._parallel_env.state_dict()
             }
