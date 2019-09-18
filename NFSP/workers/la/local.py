@@ -9,6 +9,7 @@ from NFSP.workers.la.SeatActor import SeatActor
 from PokerRL.rl import rl_util
 from PokerRL.rl.agent_modules.DDQN import DDQN
 from PokerRL.rl.base_cls.workers.WorkerBase import WorkerBase
+import gc
 
 
 class LearnerActor(WorkerBase):
@@ -180,6 +181,7 @@ class LearnerActor(WorkerBase):
             }
             pickle.dump(obj=state, file=pkl_file, protocol=pickle.HIGHEST_PROTOCOL)
         del state
+        gc.collect()
 
     def load_checkpoint(self, name_to_load, step):
         for p_id in range(self._env_bldr.N_SEATS):
