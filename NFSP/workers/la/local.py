@@ -177,7 +177,7 @@ class LearnerActor(WorkerBase):
                 "env": self._parallel_env.state_dict()
             }
             pickle.dump(obj=state, file=pkl_file, protocol=pickle.HIGHEST_PROTOCOL)
-            del state
+        del state
 
     def load_checkpoint(self, name_to_load, step):
         for p_id in range(self._env_bldr.N_SEATS):
