@@ -167,14 +167,17 @@ class LearnerActor(WorkerBase):
                                                      cls=self.__class__, worker_id=str(self._id) + "_P" + str(p_id)),
                       "wb") as pkl_file:
                 pickle.dump(obj=state, file=pkl_file, protocol=pickle.HIGHEST_PROTOCOL)
+            del state
 
         with open(self._get_checkpoint_file_path(name=self._t_prof.name, step=curr_step,
                                                  cls=self.__class__, worker_id=str(self._id) + "_General"),
                   "wb") as pkl_file:
+
             state = {
                 "env": self._parallel_env.state_dict()
             }
             pickle.dump(obj=state, file=pkl_file, protocol=pickle.HIGHEST_PROTOCOL)
+            del state
 
     def load_checkpoint(self, name_to_load, step):
         for p_id in range(self._env_bldr.N_SEATS):
